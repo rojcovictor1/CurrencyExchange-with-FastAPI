@@ -28,7 +28,7 @@ def get_currency_list():
 
 
 # Function to get the exchange rate for a given currency pair
-def get_exchange_rate(from_currency: str, to_currency: str):
+def get_exchange_rate(from_currency: str, to_currency: str) -> dict:
     response = requests.get(
         f"{BASE_URL}/live",
         headers={"apikey": API_KEY},
