@@ -16,11 +16,9 @@ def list_currencies(_user: str = Depends(get_current_user)):
 
 
 # Endpoint to convert currencies
-@router.post("/currency/exchange/", response_model=ExchangeRateResponse)
-def exchange_currency(
-        request: CurrencyExchangeRequest, # Using Pydantic model for input,
-        _user: str = Depends(get_current_user)
-):
+@router.post("/currency/exchange/", response_model=ExchangeRateResponse,
+             dependencies=[Depends(get_current_user)])
+def exchange_currency(request: CurrencyExchangeRequest):  # Using Pydantic model for input
     exchange_rate = get_exchange_rate(request.from_currency, request.to_currency)
     if not exchange_rate:
         raise HTTPException(
