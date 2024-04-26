@@ -1,15 +1,13 @@
-import os
 import requests
-import dotenv
 from fastapi import HTTPException
+from app.core.config import AppConfig
 
 
-# Load environment variables from .env file
-dotenv.load_dotenv()
+config = AppConfig()  # Load configuration
 
 
 # Get the API key from environment variables
-API_KEY = os.getenv("API_KEY")
+API_KEY = config.API_KEY
 
 
 # Base URL for the external currency exchange data
